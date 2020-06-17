@@ -1,0 +1,196 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/spawner_box.gd" type="Script" id=1]
+[ext_resource path="res://Animations/Source/Forklift_animation1.png" type="Texture" id=2]
+[ext_resource path="res://Animations/Source/Forklift_animation2.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 704, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 384 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 384 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 96, 32 )
+
+[sub_resource type="Animation" id=5]
+length = 1.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1408, 544 ), Vector2( 608, 544 ), Vector2( -160, 544 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("right:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -96, -416 ), Vector2( 704, -320 ), Vector2( 1472, -224 ), Vector2( 1472, -224 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("left:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1440, -416 ), Vector2( -640, -416 ), Vector2( 128, -416 ), Vector2( 128, -224 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("forkliftOLDCAT:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 32, 32 )
+
+[node name="spawner_box" type="Node"]
+script = ExtResource( 1 )
+
+[node name="container" type="Node" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 640, 736 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2( -160, 544 )
+
+[node name="right" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 1472, -224 )
+shape = SubResource( 2 )
+
+[node name="left" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 128, -224 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2( 0, 64 )
+shape = SubResource( 4 )
+
+[node name="forkliftOLDCAT" type="Sprite" parent="StaticBody2D2"]
+position = Vector2( -64, -19.365 )
+scale = Vector2( 0.163215, 0.163215 )
+texture = ExtResource( 2 )
+
+[node name="anim" type="AnimationPlayer" parent="StaticBody2D2"]
+playback_speed = 0.5
+anims/wroom = SubResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 32, -56.9826 )
+shape = SubResource( 6 )
+
+[node name="Area2D2" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( 160, -56.9826 )
+shape = SubResource( 6 )
+
+[node name="Area2D3" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2( 288, -56.9826 )
+shape = SubResource( 6 )
+
+[node name="Area2D4" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D4"]
+position = Vector2( 416, -56.9826 )
+shape = SubResource( 6 )
+
+[node name="Area2D5" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D5"]
+position = Vector2( 544, -56.9826 )
+shape = SubResource( 6 )
+
+[node name="Area2D6" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D6"]
+position = Vector2( 672, -56.9826 )
+shape = SubResource( 6 )
+
+[node name="Area2D7" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D7"]
+position = Vector2( 800, -56.9826 )
+shape = SubResource( 6 )
+
+[node name="Area2D8" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D8"]
+position = Vector2( 928, -56.9826 )
+shape = SubResource( 6 )
+
+[node name="Area2D9" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D9"]
+position = Vector2( 1056, -56.9826 )
+shape = SubResource( 6 )
+
+[node name="Area2D10" type="Area2D" parent="."]
+position = Vector2( 32, 120.983 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D10"]
+position = Vector2( 1184, -56.9826 )
+shape = SubResource( 6 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_Area2D2_body_exited"]
+[connection signal="body_entered" from="Area2D3" to="." method="_on_Area2D3_body_entered"]
+[connection signal="body_exited" from="Area2D3" to="." method="_on_Area2D3_body_exited"]
+[connection signal="body_entered" from="Area2D4" to="." method="_on_Area2D4_body_entered"]
+[connection signal="body_exited" from="Area2D4" to="." method="_on_Area2D4_body_exited"]
+[connection signal="body_entered" from="Area2D5" to="." method="_on_Area2D5_body_entered"]
+[connection signal="body_exited" from="Area2D5" to="." method="_on_Area2D5_body_exited"]
+[connection signal="body_entered" from="Area2D6" to="." method="_on_Area2D6_body_entered"]
+[connection signal="body_exited" from="Area2D6" to="." method="_on_Area2D6_body_exited"]
+[connection signal="body_entered" from="Area2D7" to="." method="_on_Area2D7_body_entered"]
+[connection signal="body_exited" from="Area2D7" to="." method="_on_Area2D7_body_exited"]
+[connection signal="body_entered" from="Area2D8" to="." method="_on_Area2D8_body_entered"]
+[connection signal="body_exited" from="Area2D8" to="." method="_on_Area2D8_body_exited"]
+[connection signal="body_entered" from="Area2D9" to="." method="_on_Area2D9_body_entered"]
+[connection signal="body_exited" from="Area2D9" to="." method="_on_Area2D9_body_exited"]
+[connection signal="body_entered" from="Area2D10" to="." method="_on_Area2D10_body_entered"]
+[connection signal="body_exited" from="Area2D10" to="." method="_on_Area2D10_body_exited"]

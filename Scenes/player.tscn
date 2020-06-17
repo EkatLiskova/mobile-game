@@ -1,0 +1,351 @@
+[gd_scene load_steps=64 format=2]
+
+[ext_resource path="res://Scripts/player.gd" type="Script" id=1]
+[ext_resource path="res://Animations/run1.png" type="Texture" id=2]
+[ext_resource path="res://Animations/Attack1.png" type="Texture" id=3]
+[ext_resource path="res://Animations/Attack2.png" type="Texture" id=4]
+[ext_resource path="res://Animations/Attack3.png" type="Texture" id=5]
+[ext_resource path="res://Animations/Attack4.png" type="Texture" id=6]
+[ext_resource path="res://Animations/Attack5.png" type="Texture" id=7]
+[ext_resource path="res://Animations/Attack6.png" type="Texture" id=8]
+[ext_resource path="res://Animations/Attack7.png" type="Texture" id=9]
+[ext_resource path="res://Animations/Attack8.png" type="Texture" id=10]
+[ext_resource path="res://Animations/Attack9.png" type="Texture" id=11]
+[ext_resource path="res://Animations/Idle1.png" type="Texture" id=12]
+[ext_resource path="res://Animations/Pushing3.png" type="Texture" id=13]
+[ext_resource path="res://Animations/Idle2.png" type="Texture" id=14]
+[ext_resource path="res://Animations/Jump1.png" type="Texture" id=15]
+[ext_resource path="res://Animations/Jump2.png" type="Texture" id=16]
+[ext_resource path="res://Animations/Jump3.png" type="Texture" id=17]
+[ext_resource path="res://Animations/Pushing1.png" type="Texture" id=18]
+[ext_resource path="res://Animations/Pushing2.png" type="Texture" id=19]
+[ext_resource path="res://Animations/Pushing4.png" type="Texture" id=20]
+[ext_resource path="res://Animations/run2.png" type="Texture" id=21]
+[ext_resource path="res://Animations/run3.png" type="Texture" id=22]
+[ext_resource path="res://Animations/run4.png" type="Texture" id=23]
+[ext_resource path="res://Animations/run5.png" type="Texture" id=24]
+[ext_resource path="res://Animations/run6.png" type="Texture" id=25]
+[ext_resource path="res://Animations/run7.png" type="Texture" id=26]
+
+[sub_resource type="PhysicsMaterial" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:linear_velocity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1000, 0 ), Vector2( 100, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "dash"
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ), ExtResource( 13 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 1.5
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ), ExtResource( 14 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("anim:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("anim:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 16 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 13 ), ExtResource( 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("anim:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.5 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 1.5
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1, 1.25, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("anim:playback_speed")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3.5 ]
+}
+
+[sub_resource type="RayShape2D" id=38]
+length = 24.7075
+
+[sub_resource type="AnimationNodeAnimation" id=10]
+animation = "dash"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "jump"
+
+[sub_resource type="AnimationNodeAnimation" id=13]
+animation = "pushing"
+
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "dash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachine" id=35]
+states/dash/node = SubResource( 10 )
+states/dash/position = Vector2( 88, 153.461 )
+states/idle/node = SubResource( 11 )
+states/idle/position = Vector2( 717, 337 )
+states/jump/node = SubResource( 12 )
+states/jump/position = Vector2( 41, 409 )
+states/pushing/node = SubResource( 13 )
+states/pushing/position = Vector2( 517, 119 )
+states/run/node = SubResource( 14 )
+states/run/position = Vector2( 449, 502 )
+transitions = [ "idle", "jump", SubResource( 15 ), "jump", "idle", SubResource( 16 ), "idle", "pushing", SubResource( 17 ), "pushing", "idle", SubResource( 18 ), "idle", "run", SubResource( 19 ), "run", "idle", SubResource( 20 ), "jump", "run", SubResource( 21 ), "run", "jump", SubResource( 22 ), "jump", "pushing", SubResource( 23 ), "pushing", "jump", SubResource( 24 ), "pushing", "run", SubResource( 25 ), "run", "pushing", SubResource( 26 ), "pushing", "dash", SubResource( 27 ), "idle", "dash", SubResource( 28 ), "dash", "idle", SubResource( 29 ), "run", "dash", SubResource( 30 ), "jump", "dash", SubResource( 31 ), "dash", "pushing", SubResource( 32 ), "dash", "jump", SubResource( 33 ), "dash", "run", SubResource( 34 ) ]
+graph_offset = Vector2( 0, -1.56256 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=36]
+
+[sub_resource type="RayShape2D" id=37]
+length = 66.52
+
+[node name="player" type="RigidBody2D"]
+mode = 2
+mass = 3.0
+physics_material_override = SubResource( 1 )
+custom_integrator = true
+contacts_reported = 3
+script = ExtResource( 1 )
+
+[node name="sprite" type="Sprite" parent="."]
+scale = Vector2( 1.25, 1.25 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="anim" type="AnimationPlayer" parent="."]
+playback_speed = 3.5
+anims/attack = SubResource( 2 )
+anims/dash = SubResource( 3 )
+anims/idle = SubResource( 4 )
+anims/jump = SubResource( 5 )
+anims/jump_down = SubResource( 6 )
+anims/pushing = SubResource( 7 )
+anims/run = SubResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.554779, 11.6944 )
+scale = Vector2( 10, 1.765 )
+shape = SubResource( 38 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -0.445206, 56.405, -40.2946, -63.7756, 33.7549, -63.7756 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="raycast" type="RayCast2D" parent="."]
+position = Vector2( -3.61073, 0 )
+scale = Vector2( 1.11284, 1 )
+enabled = true
+cast_to = Vector2( -30, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 35 )
+anim_player = NodePath("../anim")
+active = true
+parameters/playback = SubResource( 36 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 3.14159
+shape = SubResource( 37 )
+[connection signal="body_entered" from="." to="." method="_on_player_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -1,0 +1,160 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Sounds/UI_sound_click.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sprites/BGs/Menu_background2.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/BGs/Menu_Logo2.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/BGs/Menu_TOP_button.png" type="Texture" id=5]
+[ext_resource path="res://Fonts/font_score.TTF" type="DynamicFontData" id=6]
+[ext_resource path="res://Sprites/BGs/Menu_PLAY_button.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/BGs/Menu_SETTINGS_button.png" type="Texture" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+use_mipmaps = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "FadeIn"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 0, 0, 0, 0.529412 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../../sound_click:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Menu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="sound_click" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 471.359, 505.775 )
+rotation = -1.5708
+stream = ExtResource( 2 )
+volume_db = -15.0
+
+[node name="Menu_UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Background" type="Sprite" parent="Menu_UI"]
+position = Vector2( 643.956, 361.142 )
+scale = Vector2( 0.666263, 0.666263 )
+texture = ExtResource( 3 )
+
+[node name="Logo" type="Sprite" parent="Menu_UI"]
+position = Vector2( 211.745, 382.623 )
+rotation = -1.5708
+scale = Vector2( 0.868236, 0.868236 )
+texture = ExtResource( 4 )
+
+[node name="Lang" type="Sprite" parent="Menu_UI"]
+position = Vector2( 144.202, 49.5294 )
+rotation = -1.5708
+scale = Vector2( 0.1727, 0.176719 )
+texture = ExtResource( 5 )
+
+[node name="Play" type="Button" parent="Menu_UI"]
+margin_left = 471.359
+margin_top = 505.775
+margin_right = 767.359
+margin_bottom = 651.775
+rect_rotation = -90.0
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+action_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu_PLAY_button" type="Sprite" parent="Menu_UI/Play"]
+position = Vector2( 147.359, 73.0235 )
+scale = Vector2( 0.477971, 0.477971 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Settings" type="Button" parent="Menu_UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 22.6103
+margin_top = -633.04
+margin_right = 98.6103
+margin_bottom = -559.04
+rect_rotation = -90.0
+custom_fonts/font = SubResource( 1 )
+action_mode = 0
+flat = true
+
+[node name="Menu_SETTINGS_button" type="Sprite" parent="Menu_UI/Settings"]
+position = Vector2( 37.4475, 34.6567 )
+scale = Vector2( 0.172963, 0.172963 )
+texture = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="Exit" type="Button" parent="Menu_UI"]
+modulate = Color( 1, 1, 1, 0.368627 )
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -123.052
+margin_top = -225.045
+margin_right = 142.948
+margin_bottom = -128.045
+rect_rotation = -90.0
+custom_fonts/font = SubResource( 2 )
+text = "EXIT"
+
+[node name="ColorRect" type="ColorRect" parent="Menu_UI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="anim" type="AnimationPlayer" parent="Menu_UI/ColorRect"]
+anims/FadeIn = SubResource( 3 )
+[connection signal="pressed" from="Menu_UI/Play" to="." method="_on_Play_pressed"]
+[connection signal="pressed" from="Menu_UI/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Menu_UI/Exit" to="." method="_on_Exit_pressed"]
